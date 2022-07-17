@@ -1,0 +1,12 @@
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: JSON [{message: "note created"}]
+
+note:
+browser appends newly created note to notes[] and  executes redrawNotes() function to display updated list
+end note
+
+
+note:
+server adds newly created note to the database
+end note
+ 
