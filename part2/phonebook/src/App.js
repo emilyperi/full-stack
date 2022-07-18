@@ -2,21 +2,34 @@ import {useState} from 'react'
 
 function App() {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }, { name: 'Ada Lovelace'}
+    { name: 'Arto Hellas', number: "800-123-4567" }, { name: 'Ada Lovelace', number: "666-666-6667"}
   ])
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
-    const newPerson = {
-      name: newName
-    }
-    setPersons(persons.concat(newPerson))
+    const index = persons.map(person => person.name).indexOf(newName)
+    if (index < 0) {
+      const newPerson = {
+        name: newName,
+        number: newNumber
+      }
+      setPersons(persons.concat(newPerson)) 
+  
+    } else {
+      alert(`${newName} is already added to phonebook`)
+    } 
+    setNewName('')
+    setNewNumber('')  
   }
 
   const handleNameChange = (event) => {
-    console.log(event.target.value)
     setNewName(event.target.value)
+  }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
   }
 
   return (
@@ -25,6 +38,8 @@ function App() {
       <form onSubmit={addPerson}>
         <div>
           name: <input value={newName} onChange={handleNameChange}/>
+          <div>
+            number: <input value={newNumber} onChange={handleNumberChange}/></div>
         </div>
         <div>
           <button  type="submit">add</button>
@@ -34,7 +49,10 @@ function App() {
       <table>
         <tbody>
       {persons.map(person => 
-        <tr key={person.name}><td>{person.name}</td></tr>)}
+        <tr key={person.name}>
+          <td>{person.name}</td>
+          <td>{person.number}</td>
+          </tr>)}
         </tbody>
       </table>
 
