@@ -17,12 +17,16 @@ const AddContact = (props) => {
         props.setNewName('')
         props.setNewNumber('')  
       }
+
+      const labelStyle = {
+        marginRight: "14px"
+      }
     
     return(
         <>
         <h3>Add Contact</h3>
         <form onSubmit={addPerson}>
-        <Field label="name" value={props.newName} setValue={props.setNewName}/>
+        <Field label="name" labelStyle={labelStyle} value={props.newName} setValue={props.setNewName}/>
         <Field label="number" value={props.newNumber} setValue={props.setNewNumber}/>
         <div>
           <button  type="submit">add</button>
