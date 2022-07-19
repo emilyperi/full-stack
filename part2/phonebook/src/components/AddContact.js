@@ -3,16 +3,17 @@ const AddContact = (props) => {
     const addPerson = (event) => {
         event.preventDefault()
         const index = props.persons.map(person => person.name).indexOf(props.newName)
+        
         if (index < 0) {
-          const newPerson = {
-            name: props.newName,
-            number: props.newNumber
-          }
-          props.setPersons(props.persons.concat(newPerson)) 
-      
+          props.setPersons(props.persons.concat({
+                name: props.newName,
+                number: props.newNumber
+            }))
+
         } else {
-          alert(`${props.newName} is already added to phonebook`)
-        } 
+            alert(`${props.newName} is already added to phonebook`) 
+        }
+
         props.setNewName('')
         props.setNewNumber('')  
       }
